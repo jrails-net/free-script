@@ -10,13 +10,13 @@ CATALINA_HOME=${TOMCAT_INSTALL}/default
 ANT_HOME=${ANT_INSTALL}/default
 
 mkdir /src/lib/
+echo "#!/bin/bash" >> /etc/profile.d/server_profile.sh
+echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile.d/server_profile.sh
+echo "export CATALINA_HOME=${CATALINA_HOME}" >> /etc/profile.d/server_profile.sh
+echo "export ANT_HOME=${ANT_HOME}" >> /etc/profile.d/server_profile.sh
+echo "export PATH="'$PATH:'"${JAVA_HOME}/bin:${ANT_HOME}/bin:${CATALINA_HOME}/bin" >> /etc/profile.d/server_profile.sh
 
-echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile
-echo "export CATALINA_HOME=${CATALINA_HOME}" >> /etc/profile
-echo "export ANT_HOME=${ANT_HOME}" >> /etc/profile
-echo "export PATH=${JAVA_HOME}/bin:${ANT_HOME}/bin:${CATALINA_HOME}/bin:$PATH" >> /etc/profile
-
-source /etc/profile
+source /etc/profile.d/server_profile.sh
 
 mkdir -p ${JAVA_INSTALL} 
 mkdir -p ${TOMCAT_INSTALL} 
