@@ -16,6 +16,7 @@ echo "export CATALINA_HOME=${CATALINA_HOME}" >> /etc/profile.d/server_profile.sh
 echo "export ANT_HOME=${ANT_HOME}" >> /etc/profile.d/server_profile.sh
 echo "export PATH="'$PATH:'"${JAVA_HOME}/bin:${ANT_HOME}/bin:${CATALINA_HOME}/bin" >> /etc/profile.d/server_profile.sh
 
+chmod a+x /etc/profile.d/server_profile.sh
 source /etc/profile.d/server_profile.sh
 
 mkdir -p ${JAVA_INSTALL} 
@@ -37,7 +38,7 @@ tar zxf apache-tomcat*.tar.gz -C ${TOMCAT_INSTALL}
 rm apache-tomcat*.tar.gz
 ln -s apache-tomcat* default
 cd ./default/webapps
-tar zcf manager.tar.gz ./host-manager/ ./manager/
+tar zcf backup.tar.gz /ROOT/ ./host-manager/ ./manager/
 rm -rf ./ROOT/*
 
 cd ${ANT_INSTALL}
